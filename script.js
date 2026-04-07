@@ -25,5 +25,53 @@ prev.addEventListener('click', () => {
 })
 
 
+// Navegação com teclado (setas)
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+        active = (active + 1) % total
+        updateSlider()
+    }
+
+    if (e.key === 'ArrowLeft') {
+        active = (active - 1 + total) % total
+        updateSlider()
+    }
+})
+
+// Permitir navegação com TAB + ENTER nos botões
+prev.setAttribute('tabindex', '0')
+next.setAttribute('tabindex', '0')
+
+prev.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        active = (active - 1 + total) % total
+        updateSlider()
+    }
+})
+
+next.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        active = (active + 1) % total
+        updateSlider()
+    }
+})
+
+// Navegação pelos indicadores (bolinhas)
+dots.forEach((dot, index) => {
+    dot.setAttribute('tabindex', '0')
+
+    dot.addEventListener('click', () => {
+        active = index
+        updateSlider()
+    })
+
+    dot.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            active = index
+            updateSlider()
+        }
+    })
+})
+
 
 
